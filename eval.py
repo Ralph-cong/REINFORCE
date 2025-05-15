@@ -30,7 +30,7 @@ def eval(env_name="CartPole-v1", iter=3, model_path="./checkpoints/REINFORCE_Car
         step = 0
         print(f"Playing {env_name} with loaded policy...")
         while not done:
-            state_tensor = torch.tensor(state, dtype=torch.float).to(device)
+            state_tensor = torch.tensor(state, dtype=torch.float).unsqueeze(0).to(device)
             with torch.no_grad():
                 probs = policy_net(state_tensor).cpu().squeeze(0).numpy() 
 
